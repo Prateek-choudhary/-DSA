@@ -1,0 +1,15 @@
+#include<vector>
+
+int subarrayWithMaxProduct(vector<int> &arr){
+	double prefix=1,suffix=1;
+	int n=arr.size();
+	double maxi=1;
+	for(int i=0;i<n;i++){
+		if(prefix==0)prefix=1;
+		if(suffix==0)suffix=1;
+		prefix*=arr[i];
+		suffix*=arr[n-1-i];
+		maxi=max({maxi,prefix,suffix});
+	}
+	return maxi;
+}
